@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Estación de Producción - Hunter Douglas</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        
+        <div id="login-screen" class="card" style="max-width: 400px; margin: 10vh auto;">
+            <h2 style="text-align: center; color: var(--text-main); font-size: 32px;">Contención de calidad</h2>
+            <p style="text-align: center; color: var(--text-sub); margin-bottom: 40px; font-weight: 500;">Escanee sus credenciales para iniciar</p>
+            
+            <div class="input-group">
+                <label>Gafete de Empleado</label>
+                <input type="password" id="employee-id" placeholder="••••••••" autofocus>
+            </div>
+            
+            <div class="input-group">
+                <label>Estación de Trabajo</label>
+                <input type="text" id="station-id" placeholder="Ej. WOD_FIN_XX">
+            </div>
+            
+            <button id="btn-login" onclick="login()" class="btn btn-primary">Ingresar al Sistema</button>
+        </div>
+
+        <div id="main-app" class="hidden">
+            <header class="app-header card">
+                <div class="info-group">
+                    <span id="user-display">---</span>
+                    <span class="separator">|</span>
+                    <span id="station-display" style="color: var(--text-sub);">---</span>
+                </div>
+                <button onclick="logout()" class="btn btn-success" style="background-color: var(--apple-gray-bg); color: var(--text-main); padding: 8px 16px;">Salir</button>
+            </header>
+
+            <main>
+                <div class="section card">
+                    <h3>Registro de Inspección</h3>
+                    
+                    <label>Código de Pieza (Shopfloor ID)</label>
+                    <input type="text" id="barcode-input" placeholder="Escanee o ingrese código..." autocomplete="off">
+                    
+                    <label>Resultado de Inspección</label>
+                    <div class="status-selector">
+                        <label class="radio-card">
+                            <input type="radio" name="status" id="status-ok" value="OK" checked onclick="toggleFailureSelect(false)">
+                            <div class="radio-content">PIEZA OK</div>
+                        </label>
+                        <label class="radio-card">
+                            <input type="radio" name="status" value="FAIL" onclick="toggleFailureSelect(true)">
+                            <div class="radio-content">CON FALLA</div>
+                        </label>
+                    </div>
+
+                    <div id="failure-container" class="hidden">
+                        <label>Tipo de Problema Detectado</label>
+                        <select id="failure-type">
+                            <option value="No opera">No opera</option>
+                            <option value="Completamente atorada">Completamente atorada</option>
+                        </select>
+                    </div>
+
+                    <button id="btn-register" onclick="registerPiece()" class="btn btn-primary">Registrar Movimiento</button>
+                </div>
+
+                <div class="section card">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 10px;">
+                        <h3 style="margin:0;">Piezas para Reparación</h3>
+                        <input type="text" id="table-search" onkeyup="filterTable()" placeholder="🔍 Buscar código..." style="width:220px; margin:0; padding:10px; font-size:14px; border-radius: 10px;">
+                    </div>
+                    <div class="table-wrapper">
+                        <table id="rejection-table">
+                            <thead>
+                                <tr>
+                                    <th>Código</th>
+                                    <th>Falla</th>
+                                    <th>Acción de Reparación</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="rejection-body">
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

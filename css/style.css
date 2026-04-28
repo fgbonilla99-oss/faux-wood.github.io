@@ -206,3 +206,25 @@ td {
 }
 
 @keyframes spin { to { transform: rotate(360deg); } }
+
+.failure-panel { background-color: #fcfcfd; border: 1px solid var(--border-color); border-radius: var(--border-radius-sub); padding: 16px; margin-bottom: 20px; animation: fadeIn 0.3s; }
+.failure-note { font-size: 13px; font-weight: 600; margin-bottom: 12px; }
+.warning-text { color: var(--apple-red); }
+.alert-text { color: #d97706; }
+.sub-label { font-size: 14px; font-weight: 600; color: var(--text-main); margin: 16px 0 8px 0; }
+.checkbox-label { display: flex; align-items: center; font-weight: normal; color: var(--text-main); margin-bottom: 10px; cursor: pointer; font-size: 15px; }
+.checkbox-label input[type="checkbox"] { margin: 0 12px 0 0; width: 20px; height: 20px; cursor: pointer; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+
+/* --- NUEVOS ESTILOS PARA DASHBOARD (BADGES) --- */
+.badge { 
+    padding: 6px 10px; 
+    border-radius: 20px; 
+    font-size: 12px; 
+    font-weight: 600; 
+    display: inline-block; 
+}
+.badge-ok { background-color: rgba(52, 199, 89, 0.15); color: #28a745; }
+.badge-fail { background-color: rgba(255, 59, 48, 0.15); color: #dc3545; }
+.badge-pending { background-color: rgba(255, 193, 7, 0.15); color: #d97706; }
+.badge-repaired { background-color: rgba(0, 113, 227, 0.15); color: #0071e3; }

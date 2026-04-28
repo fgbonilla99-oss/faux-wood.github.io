@@ -8,7 +8,6 @@
 </head>
 <body>
     <div class="container">
-        
         <div id="login-screen" class="card" style="max-width: 400px; margin: 10vh auto;">
             <h2 style="text-align: center; color: var(--text-main); font-size: 32px;">Contención de calidad</h2>
             <p style="text-align: center; color: var(--text-sub); margin-bottom: 40px; font-weight: 500;">Escanee sus credenciales para iniciar</p>
@@ -56,11 +55,46 @@
                     </div>
 
                     <div id="failure-container" class="hidden">
-                        <label>Tipo de Problema Detectado</label>
-                        <select id="failure-type">
-                            <option value="No opera">No opera</option>
-                            <option value="Completamente atorada">Completamente atorada</option>
+                        <label>Condición de la Falla</label>
+                        <select id="tipoFalla" onchange="toggleInputsFalla()">
+                            <option value="">Seleccione una opción...</option>
+                            <option value="1">1. No opera desde inicio</option>
+                            <option value="2">2. Se atora / falla durante operación</option>
                         </select>
+
+                        <div id="panelFallaInicio" class="hidden failure-panel">
+                            <label class="checkbox-label" style="align-items: flex-start;">
+                                <input type="radio" name="sub_falla_radio" id="f1_op1" value="No funciona al retirar el seguro del motor."> 
+                                <span>No funciona al retirar el seguro del motor.</span>
+                            </label>
+                            
+                            <label class="checkbox-label" style="align-items: flex-start;">
+                                <input type="radio" name="sub_falla_radio" id="f1_op2" value="Se detecta revisando cover, spool o kit de transmisión."> 
+                                <span>Se detecta revisando cover, spool o kit de transmisión.</span>
+                            </label>
+
+                            <label class="checkbox-label" style="align-items: flex-start;">
+                                <input type="radio" name="sub_falla_radio" id="f1_op3" value="El producto nunca llegó a operar correctamente."> 
+                                <span>El producto nunca llegó a operar correctamente.</span>
+                            </label>
+                        </div>
+
+                        <div id="panelFallaOperacion" class="hidden failure-panel">
+                            <label class="checkbox-label" style="align-items: flex-start;">
+                                <input type="radio" name="sub_falla_radio" id="f2_op1" value="Puede subir y bajar, o subir y después se brinca el hilo y se atora."> 
+                                <span>Puede subir y bajar, o subir y después se brinca el hilo y se atora.</span>
+                            </label>
+
+                            <label class="checkbox-label" style="align-items: flex-start;">
+                                <input type="radio" name="sub_falla_radio" id="f2_op2" value="Ya tuvo operación parcial."> 
+                                <span>Ya tuvo operación parcial.</span>
+                            </label>
+
+                            <label class="checkbox-label" style="align-items: flex-start;">
+                                <input type="radio" name="sub_falla_radio" id="f2_op3" value="Requiere reensamble completo: incluye componentes de headrail (HR), motor y transmission."> 
+                                <span>Requiere reensamble completo: incluye componentes de headrail (HR), motor y transmission.</span>
+                            </label>
+                        </div>
                     </div>
 
                     <button id="btn-register" onclick="registerPiece()" class="btn btn-primary">Registrar Movimiento</button>
@@ -81,15 +115,54 @@
                                     <th></th>
                                 </tr>
                             </thead>
-                            <tbody id="rejection-body">
-                                </tbody>
+                            <tbody id="rejection-body"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <div id="dashboard-app" class="hidden">
+            <header class="app-header card">
+                <div class="info-group">
+                    <span id="admin-user-display">---</span>
+                    <span class="separator">|</span>
+                    <span style="color: var(--apple-blue);">PANEL GENERAL DE CALIDAD</span>
+                </div>
+                <button onclick="logout()" class="btn btn-success" style="background-color: var(--apple-gray-bg); color: var(--text-main); padding: 8px 16px;">Salir</button>
+            </header>
+
+            <main>
+                <div class="section card">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
+                        <h3 style="margin:0;">Historial Completo de Inspecciones</h3>
+                        <div style="display: flex; gap: 10px;">
+                            <button class="btn btn-primary" onclick="loadAllRecords()" style="padding: 10px 15px; width: auto;">🔄 Actualizar</button>
+                            <input type="text" id="dashboard-search" onkeyup="filterDashboardTable()" placeholder="🔍 Buscar código o falla..." style="width:250px; margin:0; padding:10px; font-size:14px; border-radius: 10px;">
+                        </div>
+                    </div>
+                    <div class="table-wrapper">
+                        <table id="dashboard-table">
+                            <thead>
+                                <tr>
+                                    <th>Código</th>
+                                    <th>Modelo</th>
+                                    <th>Inspección</th>
+                                    <th>Detalle de Falla</th>
+                                    <th>Reparación</th>
+                                    <th>Estación</th> <th>Op</th>
+                                    <th>Estatus Final</th>
+                                    <th>Último Movimiento</th> </tr>
+                            </thead>
+                            <tbody id="dashboard-body">
+                                <tr><td colspan="9" style="text-align:center">Cargando registros...</td></tr>
+                            </tbody>
                         </table>
                     </div>
                 </div>
             </main>
         </div>
     </div>
-
     <script src="js/script.js"></script>
 </body>
 </html>

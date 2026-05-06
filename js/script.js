@@ -106,13 +106,6 @@ async function registerPiece() {
 
     let modelName = "N/A";
 
-    // API Call feature disable ***CORS ERROR***
-    /*try {
-        const apiRes = await fetch(`http://rosarbciis04:8012/api/Quality?shopfloorid=${barcode}`);
-        const apiData = await apiRes.json();
-        if(apiData.data && apiData.data.length > 0) modelName = apiData.data[0].shop_floor_model;
-    } catch (e) { console.warn("API Local offline"); }*/
-
     const payload = {
         actionType: "CREATE",
         data: { barcode, model: modelName, status, failure: failureDetails, op: user, st: station }

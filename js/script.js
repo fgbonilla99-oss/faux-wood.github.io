@@ -139,6 +139,7 @@ function addTableRow(item) {
                 <option value="Re-ensamble cover">Re-ensamble cover</option>
                 <option value="Re-ensamble spool">Re-ensamble spool</option>
                 <option value="Re-ensamble general">Re-ensamble general</option>
+                <option value="Cambio de varilla">Cambio de varilla</option>
                 <option value="Cambio Kit Transmisión + Motor">Cambio Kit Transmisión + Motor</option>
             </select>
         </td>

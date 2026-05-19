@@ -126,7 +126,7 @@ async function registerPiece() {
     } catch (e) { alert("Error al guardar"); }
     finally { setLoading(btn, false, "Registrar Movimiento"); }
 }
-
+// Innecesary comments, only to force commit
 function addTableRow(item) {
     const body = document.getElementById('rejection-body');
     const row = document.createElement('tr');
